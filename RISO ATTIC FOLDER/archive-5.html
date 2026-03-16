@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrap Findings</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Space+Grotesk:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+
+
+    <!-- Connect CSS file -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="page">
+
+        <!-- LEFT SIDE -->
+        <div class="left-column">
+
+            <a href="index.html" class="menu-button">Scrap Findings</a>
+
+            <div class="sidebar-section">
+                <h3>Date Found</h3>
+                <p>Sample Date, March 16, 2026</p>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Location</h3>
+                <p>Sample Location</p>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Description</h3>
+                <p>This is a sample archive page for scrap findings.</p>
+            </div>
+
+            <a href="main-page.html" class="back-button">← Back</a>
+            <a href="archive-6.html" class="next-button"> Next</a>
+
+        </div>
+
+        <!-- CENTER IMAGE -->
+        <div class="center-column">
+            <div class="scrap">
+                <img src="scrap-images/scrap-4-2.JPG" alt="Scrap Image">
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="right-column">
+            <div class="hidden-content">
+            </div>
+
+            <div class="hover-box">
+                <button class="info-toggle">+</button>
+
+                <div class="related-panel">
+                    <ul>
+                        <li>
+                            <a href="archive-6.html">002</a>
+                        </li>
+                        <li>
+                            <a href="#">003</a>
+                        </li>
+                        <li>
+                            <a href="#">004</a>
+                        </li>
+
+                    </ul>
+                    <a href="#">005</a>
+                    </ul>
+                </div>
+            </div>
+
+
+            <script>
+                function toggleInfo() {
+                    document.getElementById("related").classList.toggle("active");
+                }
+            </script>
+
+</body>
+
+</html>
