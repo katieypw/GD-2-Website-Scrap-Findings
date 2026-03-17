@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Space+Grotesk:wght@400;600&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+     <link href="https://fonts.adobe.com/fonts/logic-monospace" rel="stylesheet">
+       <link href="https://fonts.adobe.com/fonts/ubuntu-mono" rel="stylesheet">
+
+
 
 
 
@@ -27,30 +31,32 @@
 
             <a href="index.html" class="menu-button">Scrap Findings</a>
 
+           
             <div class="sidebar-section">
                 <h3>Date Found</h3>
-                <p>Sample Date, March 16, 2026</p>
+                <p>3:50pm, February 12, 2026</p>
             </div>
 
             <div class="sidebar-section">
                 <h3>Location</h3>
-                <p>Sample Location</p>
+                <p>Ocad University 3rd Floor</p>
             </div>
 
             <div class="sidebar-section">
                 <h3>Description</h3>
-                <p>This is a sample archive page for scrap findings.</p>
+                <p>This piece of scrap was found in the shared scraps bin on the 3rd floor at Ocad University. Rough
+                    Textures are introduced, experimentations can include scanning, cutting through the material, or
+                    adding color</p>
             </div>
 
-            <a href="main-page.html" class="back-button">← Back</a>
-            <a href="archive-1.html" class="next-button"> Next</a>
+            <a href="archive.html" class="back-button">← Back</a>
 
         </div>
 
         <!-- CENTER IMAGE -->
         <div class="center-column">
             <div class="scrap">
-                <img src="scrap-images/scrap-4-2.JPG" alt="Scrap Image">
+                <img src="scrap-images/scrap-4-1.JPG" alt="Scrap Image">
             </div>
         </div>
 
@@ -65,7 +71,7 @@
                 <div class="related-panel">
                     <ul>
                         <li>
-                            <a href="archive-1.html">002</a>
+                            <a href="archive-2.html">002</a>
                         </li>
                         <li>
                             <a href="#">003</a>
@@ -85,6 +91,21 @@
                 function toggleInfo() {
                     document.getElementById("related").classList.toggle("active");
                 }
+
+                 // Keyboard navigation for back/next buttons
+        document.addEventListener('keydown', function (e) {
+            const backBtn = document.querySelector('.back-button');
+            const nextBtn = document.querySelector('.next-button');
+
+            if (e.key === 'ArrowLeft' && backBtn) {
+                e.preventDefault();
+                backBtn.click();
+            } else if (e.key === 'ArrowRight' && nextBtn) {
+                e.preventDefault();
+                nextBtn.click();
+            }
+        });
+        
             </script>
 
 </body>
