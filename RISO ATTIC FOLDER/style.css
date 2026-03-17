@@ -1,13 +1,12 @@
 body {
     margin: 0;
-    font-family: 'Pacifico', cursive;
     background-image: url("scrap-images/background.jpg");
     text-align: center;
 }
 
 span {
     font-size: 24px;
-    font-family: logic-monospace, monospace;
+    font-family: ubuntu mono, monospace;
     color: #555;
 }
  span:hover {
@@ -114,7 +113,8 @@ span {
         width: 300px;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        padding-bottom: 20px;
+        gap: 10px;
     }
 
     .menu-button {
@@ -127,7 +127,7 @@ span {
         border-radius: 4px;
         transition: 0.2s ease;
         text-align: center;
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: ubuntu mono, monospace;
     }
 
     .menu-button:hover {
