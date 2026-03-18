@@ -26,11 +26,11 @@ body#archive {
 span {
     font-size: 24px;
     font-family: ubuntu mono, monospace;
-    color: #555;
+
 }
 
 span:hover {
-    color: #ff0000;
+    color: #ee2f73;
     transition: 0.3s ease;
 }
 
@@ -539,7 +539,7 @@ body {
     width: 35px;
     height: 35px;
     background: #eaeaea;
-    transition: transform 0.3s ease, background 0.3s ease;
+    transition: transform 0.35s ease, background 0.35s ease, color 0.35s ease;
     transform: rotate(var(--base-rot));
     display: flex;
     align-items: center;
@@ -553,8 +553,9 @@ body {
 
 /* Hover effect */
 .shape:hover {
-    transform: rotate(calc(var(--base-rot) + 45deg)) scale(1.15);
-    background: salmon;
+    transform: rotate(var(--base-rot)) scale(1.06);
+    background: #f0f0f0;
+    color: #ee2f73;
 }
 
 /* Positioning around diamond */
