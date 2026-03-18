@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrap Findings</title>
+    <link rel="icon" type="image/png" href="scrap-images/favicon.png">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Space+Grotesk:wght@400;600&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.adobe.com/fonts/ubuntu-mono" rel="stylesheet">
 
 
     <!-- Connect CSS file -->
@@ -18,74 +19,104 @@
 
 </head>
 
-<body>
+<body id="archive">
 
     <div class="page">
 
         <!-- LEFT SIDE -->
         <div class="left-column">
 
-            <a href="index.html" class="menu-button">Scrap Findings</a>
+            <a href="main-page.html" class="menu-button">Scrap Findings</a>
 
             <div class="sidebar-section">
+
+                <h4>/002</h4>
+
                 <h3>Date Found</h3>
-                <p>Sample Date, March 16, 2026</p>
-            </div>
 
-            <div class="sidebar-section">
+                <p>Approx 4pm, March 1, 2026</p>
+
+
+
+
+
                 <h3>Location</h3>
-                <p>Sample Location</p>
-            </div>
+                <p>Ocad University Screen Printing Room 390 Garage Bin</p>
 
-            <div class="sidebar-section">
+
+
                 <h3>Description</h3>
-                <p>This is a sample archive page for scrap findings.</p>
+              
+
+                <p>This piece of scrap was found in the Garbage bin in the Screen Printing room 390. 
             </div>
 
-            <a href="main-page.html" class="back-button">← Back</a>
-            <a href="archive-5.html" class="next-button"> Next</a>
+            <a href="archive-3.html" class="back-button">←Back</a>
 
         </div>
 
         <!-- CENTER IMAGE -->
         <div class="center-column">
             <div class="scrap">
-                <img src="scrap-images/scrap-1.png" alt="Scrap Image">
+                <img class="scrap-img-1" src="scrap-images/scrap-5.png" alt="Scrap Image">
+            <img class="scrap-img-2" src="scrap-images/scrap-15.png" alt="Scrap Image">
+            
             </div>
         </div>
 
         <!-- RIGHT SIDE -->
         <div class="right-column">
-            <div class="hidden-content">
-            </div>
-
             <div class="hover-box">
-                <button class="info-toggle">+</button>
+                <button class="info-toggle" id="audioBtn">+</button>
 
-                <div class="related-panel">
-                    <ul>
-                        <li>
-                            <a href="archive-5.html">002</a>
-                        </li>
-                        <li>
-                            <a href="#">003</a>
-                        </li>
-                        <li>
-                            <a href="#">004</a>
-                        </li>
-
-                    </ul>
-                    <a href="#">005</a>
-                    </ul>
-                </div>
+                <audio id="archiveAudio">
+                    <source src="audio/rubbing recording.m4a" type="audio/mp4">
+                </audio>
+                <p class="sound-label">sound</p>
             </div>
+        </div>
 
+        <a href="archive-5.html" class="next-button">Next →</a>
+    </div>
 
-            <script>
-                function toggleInfo() {
-                    document.getElementById("related").classList.toggle("active");
-                }
-            </script>
+    </div>
+
+    <script>
+        function toggleInfo() {
+            document.getElementById("related").classList.toggle("active");
+        }
+
+        // Audio play on + button click
+        document.addEventListener('DOMContentLoaded', function () {
+            const audioBtn = document.getElementById('audioBtn');
+            const archiveAudio = document.getElementById('archiveAudio');
+
+            if (audioBtn && archiveAudio) {
+                audioBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (archiveAudio.paused) {
+                        archiveAudio.play();
+                    } else {
+                        archiveAudio.pause();
+                    }
+                });
+            }
+        });
+
+        // Keyboard navigation for back/next buttons
+        document.addEventListener('keydown', function (e) {
+            const backBtn = document.querySelector('.back-button');
+            const nextBtn = document.querySelector('.next-button');
+
+            if (e.key === 'ArrowLeft' && backBtn) {
+                e.preventDefault();
+                backBtn.click();
+            } else if (e.key === 'ArrowRight' && nextBtn) {
+                e.preventDefault();
+                nextBtn.click();
+            }
+        });
+    </script>
 
 </body>
 

@@ -11,7 +11,7 @@ body#main-page {
     background-position: center;
     background-repeat: no-repeat;
     text-align: center;
-   zoom: 110%;
+    zoom: 110%;
 }
 
 body#archive {
@@ -21,7 +21,7 @@ body#archive {
     background-position: center;
     background-repeat: no-repeat;
     zoom: 110%;
-}   
+}
 
 span {
     font-size: 24px;
@@ -52,11 +52,11 @@ h3 {
 }
 
 h4 {
-margin: 0;
+    margin: 0;
     font-size: 40px;
     margin-bottom: 20px;
     font-family: space grotesk, sans-serif;
-       color: #555;
+    color: #555;
 }
 
 p {
@@ -132,27 +132,32 @@ body {
     display: flex;
     padding: 40px;
     gap: 40px;
-
+    margin-left: 340px;
 }
 
 /* ---------- LEFT SIDE ---------- */
 
 
 .left-column {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 300px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    gap: 10px;
+    padding: 20px 20px 40px 20px;
+    gap: 8px;
+    overflow-y: auto;
+    z-index: 100;
 }
 
 .menu-button {
     background: #eaeaea;
-    padding: 20px;
+    padding: 20px 20px;
     text-decoration: none;
     color: salmon;
-    font-size: 24px;
+    font-size: 20px;
     letter-spacing: 1px;
     border-radius: 20px;
     transition: 0.2s ease;
@@ -167,9 +172,9 @@ body {
 
 .sidebar-section {
     background: #eaeaea;
-    padding: 30px 20px;
+    padding: 14px 16px;
     border-radius: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
 
 .sidebar-section h3 {
@@ -189,15 +194,17 @@ body {
 
 .back-button {
     display: block;
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
     width: fit-content;
-    margin: auto 0 0 0;
-    align-self: flex-end;
     background: #eaeaea;
     padding: 18px 50px;
     border-radius: 40px;
     text-decoration: none;
     color: black;
     font-size: 16px;
+    z-index: 100;
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
@@ -208,15 +215,17 @@ body {
 
 .next-button {
     display: block;
-    margin: auto 0 0 0;
-    align-self: flex-end;
-    background: #eaeaea;
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
     width: fit-content;
+    background: #eaeaea;
     padding: 18px 50px;
     border-radius: 40px;
     text-decoration: none;
     color: black;
     font-size: 16px;
+    z-index: 100;
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
@@ -237,14 +246,13 @@ body {
 .scrap {
     max-width: 400px;
     width: 100%;
-    background: #eaeaea;
     padding: 40px;
     border-radius: 12px;
     margin-top: 100px;
-     margin-bottom: 100px;
-     margin-left: auto;
-     margin-right: auto;
-     
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 .scrap img {
@@ -252,6 +260,79 @@ body {
     display: block;
     border-radius: 6px;
 }
+
+.scrap-img-1 {
+    width: 120% !important;
+    max-width: 800px !important;
+    padding: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: -50px;
+    margin-right: auto;
+}
+
+.scrap-img-2 {
+    width: 120% !important;
+    max-width: 800px !important;
+    padding: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: -50px;
+    margin-right: auto;
+}
+
+.scrap-img-3 {
+    width: 100% !important;
+    max-width: 400px !important;
+    padding: 10px;
+    margin: center;
+    margin-top: 200px;
+    margin-bottom: -250px;
+
+}
+
+.scrap-img-4 {
+    width: 50% !important;
+    max-width: 400px !important;
+    padding: 40px;
+    margin: center;
+    margin-top: 20px;
+    margin-bottom: -250px;
+}
+
+.scrap-img-5 {
+    width: 100% !important;
+    max-width: 400px !important;
+    padding: 40px;
+    margin: center;
+    margin-top: 40px;
+    margin-bottom: -100px;
+    margin-left: -40px;
+}
+
+.scrap-img-6 {
+    width: 100% !important;
+    max-width: 400px !important;
+    padding: 40px;
+    margin: center;
+    margin-top: 200px;
+    margin-bottom: -250px;
+    margin-left: -40px;
+}
+
+
+.scrap-img-7 {
+    width: 100% !important;
+    max-width: 400px !important;
+    max-height: 400px !important;
+    padding: 40px;
+    margin: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    margin-left: -40px;
+}
+
+
 
 /* ---------- RIGHT INFO PANEL ---------- */
 
@@ -298,13 +379,24 @@ body {
     color: #fa8072;
     border-radius: 50%;
     transition: 0.3s;
-   
+
 }
 
 .info-toggle {
-    position: absolute;
-    top: 50px;
-    right: -70px;
+    position: fixed;
+    top: 120px;
+    right: 20px;
+    z-index: 300;
+}
+
+.sound-label {
+    position: fixed;
+    top: 126px;
+    right: 62px;
+    margin: 0;
+    z-index: 300;
+    font-size: 14px;
+    line-height: 1;
 }
 
 .info-toggle:hover {
@@ -351,7 +443,7 @@ body {
 
 body {
     margin: 0;
-    
+
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -385,7 +477,8 @@ body {
     height: 150px;
     background: #f2f2f2;
     transform: rotate(45deg);
-    margin: 300px auto;
+    margin: 220px auto;
+    margin-left: 410px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -435,6 +528,30 @@ body {
     --base-rot: 45deg;
 }
 
+/* Shape wrapper for floating animation */
+.shape-wrapper {
+    position: absolute;
+}
+
+/* SHAPES BASE */
+.shape {
+    --base-rot: 0deg;
+    position: relative;
+    width: 35px;
+    height: 35px;
+    background: #eaeaea;
+    transition: transform 0.3s ease, background 0.3s ease;
+    transform: rotate(var(--base-rot));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: ubuntu mono, monospace;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
 /* Hover effect */
 .shape:hover {
     transform: rotate(calc(var(--base-rot) + 45deg)) scale(1.15);
@@ -443,151 +560,151 @@ body {
 
 /* Positioning around diamond */
 .spiral-1 {
-    top: 400px;
+    top: 320px;
     left: 650px;
 }
 
 .spiral-2 {
-    top: 455px;
+    top: 375px;
     left: 650px;
 }
 
 .spiral-3 {
-    top: 509px;
+    top: 429px;
     left: 630px;
 }
 
 .spiral-4 {
-    top: 556px;
+    top: 476px;
     left: 590px;
 }
 
 .spiral-5 {
-    top: 587px;
+    top: 507px;
     left: 533px;
 }
 
 .spiral-6 {
-    top: 597px;
+    top: 517px;
     left: 465px;
 }
 
 .spiral-7 {
-    top: 582px;
+    top: 502px;
     left: 395px;
 }
 
 .spiral-8 {
-    top: 541px;
+    top: 461px;
     left: 331px;
 }
 
 .spiral-9 {
-    top: 479px;
+    top: 399px;
     left: 284px;
 }
 
 .spiral-10 {
-    top: 400px;
-    left: 260px;
-}
-
-.spiral-11 {
     top: 320px;
     left: 260px;
 }
 
-.spiral-12 {
-    top: 200px;
-    left: 300px;
+.spiral-11 {
+    top: 240px;
+    left: 260px;
 }
 
-.spiral-13 {
-    top: 265px;
+.spiral-12 {
+    top: 185px;
     left: 266px;
 }
 
+.spiral-13 {
+    top: 120px;
+    left: 300px;
+}
+
 .spiral-14 {
-    top: 150px;
+    top: 70px;
     left: 380px;
 }
 
 .spiral-15 {
-    top: 100px;
+    top: 20px;
     left: 470px;
 }
 
 .spiral-16 {
-    top: 90px;
+    top: 10px;
     left: 580px;
 }
 
 .spiral-17 {
-    top: 130px;
+    top: 50px;
     left: 700px;
 }
 
 .spiral-18 {
-    top: 270px;
+    top: 190px;
     left: 781px;
 }
 
 .spiral-19 {
-    top: 400px;
+    top: 320px;
     left: 830px;
 }
 
 .spiral-20 {
-    top: 516px;
+    top: 436px;
     left: 820px;
 }
 
 .spiral-21 {
-    top: 625px;
+    top: 545px;
     left: 768px;
 }
 
 .spiral-22 {
-    top: 700px;
+    top: 620px;
     left: 680px;
 }
 
 .spiral-23 {
-    top: 730px;
+    top: 650px;
     left: 530px;
 }
 
 .spiral-24 {
-    top: 730px;
+    top: 650px;
     left: 400px;
 }
 
 .spiral-25 {
-    top: 700px;
+    top: 620px;
     left: 299px;
 }
 
 .spiral-26 {
-    top: 657px;
+    top: 577px;
     left: 194px;
 }
 
 .spiral-27 {
-    top: 540px;
+    top: 460px;
     left: 114px;
 }
 
 .spiral-28 {
-    top: 400px;
+    top: 320px;
     left: 80px;
 }
 
 .spiral-29 {
-    top: 253px;
+    top: 173px;
     left: 96px;
 }
 
 .spiral-30 {
-    top: 117px;
+    top: 37px;
     left: 163px;
 }
