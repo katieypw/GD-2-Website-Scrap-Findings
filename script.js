@@ -6,28 +6,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const maxYOffset = 60; // how far down to move before resetting (pixels)
     const pauseAt = maxYOffset; // pause at this position (milliseconds pause)
     
-    function animateBackground() {
-        // Move background position down
-        backgroundYPos += moveSpeed;
+    // function animateBackground() {
+    //     // Move background position down
+    //     backgroundYPos += moveSpeed;
         
-        // Update background position
-        body.style.backgroundPosition = `center ${-backgroundYPos}px`;
+    //     // Update background position
+    //     body.style.backgroundPosition = `center ${-backgroundYPos}px`;
         
-        // Reset when reaching max offset
-        if (backgroundYPos >= maxYOffset) {
-            backgroundYPos = 0;
-            // Optional: add a pause here by delaying next animation
-            setTimeout(() => {
-                requestAnimationFrame(animateBackground);
-            }, 500); // 500ms pause before repeating
-            return;
-        }
+    //     // Reset when reaching max offset
+    //     if (backgroundYPos >= maxYOffset) {
+    //         backgroundYPos = 0;
+    //         // Optional: add a pause here by delaying next animation
+    //         setTimeout(() => {
+    //             requestAnimationFrame(animateBackground);
+    //         }, 500); // 500ms pause before repeating
+    //         return;
+    //     }
         
-        requestAnimationFrame(animateBackground);
-    }
+    //     requestAnimationFrame(animateBackground);
+    // }
     
-    // Start the animation
-    animateBackground();
+    // // Start the animation
+    // animateBackground();
 
     // Animate shape buttons with floating effect
     const shapes = document.querySelectorAll('.shape-wrapper');
