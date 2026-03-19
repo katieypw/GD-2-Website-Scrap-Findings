@@ -23,6 +23,17 @@ body#archive {
     zoom: 110%;
 }
 
+@supports not (zoom: 1) {
+    body#main-page,
+    body#archive {
+        transform: scale(1.1);
+        transform-origin: top center;
+        width: calc(100% / 1.1);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 /* Sidebar Legend */
 .sidebar-legend {
     position: fixed;
