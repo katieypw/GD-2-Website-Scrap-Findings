@@ -18,20 +18,6 @@
         document.addEventListener('DOMContentLoaded', function () {
             const diamond = document.getElementById('aboutDiamond');
             const inner = document.getElementById('diamondInner');
-            const aboutPopup = document.querySelector('.about-hover-box');
-            let popupTimer;
-
-            diamond.addEventListener('mouseenter', function () {
-                popupTimer = setTimeout(function () {
-                    aboutPopup.classList.add('is-visible');
-                }, 800);
-            });
-
-            diamond.addEventListener('mouseleave', function () {
-                clearTimeout(popupTimer);
-                aboutPopup.classList.remove('is-visible');
-            });
-
             diamond.addEventListener('click', function () {
                 inner.style.transition = 'transform 1.5s cubic-bezier(0.22, 1, 0.36, 1)';
                 inner.style.transform = 'rotateY(180deg)';
@@ -55,13 +41,6 @@
                     <span>About</span>
                 </div>
             </div>
-        </div>
-
-        <div class="about-hover-box" aria-hidden="true">
-            <p>
-                Scrap findings is a collective archive of gestures and forms made through test prints, design experimentations, 
-                and process work. Connecting experience and materiality, this website is a reflection on the creative process and the beauty of imperfection.
-            </p>
         </div>
 
         <!-- Clickable shapes -->
