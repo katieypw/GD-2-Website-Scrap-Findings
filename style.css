@@ -1069,3 +1069,170 @@ body#main-page .triangle {
     top: 37px;
     left: 163px;
 }
+
+
+/* ================================================================
+   MOBILE — phones up to 768 px wide
+   responsive.js sets body zoom to '1' on these screens so CSS
+   layout rules take full effect.
+   ================================================================ */
+@media (max-width: 768px) {
+
+    /* Suppress the fixed 110% zoom set in the desktop rules above */
+    body#main-page,
+    body#archive {
+        zoom: 1 !important;
+    }
+
+    /* ---- MAIN PAGE (index.html / about.html) ------------------
+       responsive.js scales .nav-wrapper via CSS transform.
+       Switch body to block so the nav-wrapper centres properly.
+    ------------------------------------------------------------ */
+    body#main-page {
+        display: block !important;
+        height: auto !important;
+        min-height: 100vh;
+        overflow-x: hidden;
+        padding: 16px 0 32px;
+    }
+
+    /* Legend sidebar is too wide for phones – hide it */
+    .sidebar-legend {
+        display: none;
+    }
+
+    /* Nav-wrapper transform is applied by responsive.js */
+    .nav-wrapper {
+        overflow: visible;
+        margin: 0 auto;
+    }
+
+    /* About info box: always visible inline on mobile (no hover events) */
+    .about-hover-box {
+        position: static !important;
+        width: calc(100% - 32px) !important;
+        left: auto !important;
+        top: auto !important;
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        margin: 16px auto 0;
+        box-sizing: border-box;
+    }
+
+    /* ---- ARCHIVE PAGES (archive-*.html) -----------------------
+       Reflow the 3-column desktop layout into a single column.
+    ------------------------------------------------------------ */
+
+    /* Remove the 340px left-margin offset */
+    .page {
+        flex-direction: column !important;
+        margin-left: 0 !important;
+        padding: 0 0 120px !important;
+        gap: 0 !important;
+    }
+
+    /* Un-fix the left info panel so it flows at the top */
+    .left-column {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 16px 20px 12px !important;
+        gap: 4px !important;
+        overflow-y: visible !important;
+        border-bottom: 1px solid #e0e0e0;
+        box-sizing: border-box;
+    }
+
+    /* Home button */
+    .menu-button {
+        font-size: 16px !important;
+        padding: 12px 16px !important;
+        animation: none !important;
+    }
+
+    /* Sidebar text */
+    .sidebar-section h3 { font-size: 12px !important; }
+    .sidebar-section p  { font-size: 13px !important; }
+    h4                  { font-size: 26px !important; }
+    p                   { font-size: 13px !important; }
+
+    /* Center image column */
+    .center-column {
+        width: 100% !important;
+        align-items: center !important;
+        padding: 0 !important;
+    }
+
+    /* Scrap image wrapper */
+    .scrap {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 12px 16px !important;
+        margin: 0 !important;
+        box-sizing: border-box;
+    }
+
+    /* Reset ALL per-image custom sizing and negative margins */
+    .scrap-img-1,
+    .scrap-img-2,
+    .scrap-img-3,
+    .scrap-img-4,
+    .scrap-img-5,
+    .scrap-img-6,
+    .scrap-img-7 {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 4px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Reset magnify-wrapper image stacking offsets */
+    body#archive .magnify-wrapper img:first-of-type,
+    body#archive .magnify-wrapper img:first-of-type:nth-last-of-type(n + 2) {
+        margin-top: 0 !important;
+    }
+    body#archive .magnify-wrapper img:nth-of-type(2) {
+        margin-top: 16px !important;
+    }
+
+    /* Right column – audio / related links row */
+    .right-column {
+        width: 100% !important;
+        padding: 8px 20px !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 12px;
+    }
+
+    /* Sound button + label: un-fix them from the viewport */
+    .info-toggle {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        font-size: 18px !important;
+        padding: 4px 10px !important;
+    }
+
+    .sound-label {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        font-size: 13px !important;
+        margin: 0 !important;
+    }
+
+    /* Back / Next buttons – keep fixed at bottom but with smaller padding */
+    .back-button,
+    .next-button {
+        padding: 10px 24px !important;
+        font-size: 13px !important;
+        bottom: 16px !important;
+        animation: none !important;
+    }
+
+    .back-button { left: 12px  !important; }
+    .next-button { right: 12px !important; }
+
+}
