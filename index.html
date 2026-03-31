@@ -32,6 +32,34 @@
                 aboutPopup.classList.remove('is-visible');
             });
 
+            // Legend hover effect - grow buttons based on legend shape type
+            const legendAndShapeMap = [
+                { legend: '.legend-item[data-shape="circle"]', shapeType: '.circle' },
+                { legend: '.legend-item[data-shape="square"]', shapeType: '.square' },
+                { legend: '.legend-item[data-shape="triangle"]', shapeType: '.triangle' }
+            ];
+
+            legendAndShapeMap.forEach(({ legend, shapeType }) => {
+                const legendElement = document.querySelector(legend);
+                const shapeElements = document.querySelectorAll(shapeType);
+
+                if (legendElement && shapeElements.length > 0) {
+                    legendElement.addEventListener('mouseenter', function () {
+                        legendElement.classList.add('legend-hover-active');
+                        shapeElements.forEach(shape => {
+                            shape.classList.add('legend-hover-grow');
+                        });
+                    });
+
+                    legendElement.addEventListener('mouseleave', function () {
+                        legendElement.classList.remove('legend-hover-active');
+                        shapeElements.forEach(shape => {
+                            shape.classList.remove('legend-hover-grow');
+                        });
+                    });
+                }
+            });
+
             // diamond.addEventListener('click', function () {
             //     inner.style.transition = 'transform 1.5s cubic-bezier(0.22, 1, 0.36, 1)';
             //     inner.style.transform = 'rotateY(180deg)';
@@ -40,23 +68,26 @@
             //     }, 1500); 
             // });
         });
+
     </script>
 </head>
 
 
 
-           
-           
+
+
 
 <body id="main-page">
 
     <aside class="sidebar-legend">
+        <div class="legend-box"></div>
         <div class="legend-content">
 
-            <p><span class="legend-shape pentagon-small"></span> 3D material craps</p>
-            <p><span class="legend-shape square-small"></span> Paper Scraps</p>
-            <p><span class="legend-shape triangle-small"></span> Fabric Scraps</p>
-            
+            <p class="legend-item" data-shape="circle"><span class="legend-shape pentagon-small"></span> 3D Material Scraps</p>
+            <p class="legend-item" data-shape="square"><span class="legend-shape square-small"></span> Paper Scraps</p>
+            <p class="legend-item" data-shape="triangle"><span class="legend-shape triangle-small"></span> Fabric Scraps</p>
+            <p class="legend-hint">Hover on me to see!</p>
+
         </div>
     </aside>
 
@@ -74,8 +105,9 @@
 
         <div class="about-hover-box" aria-hidden="true">
             <p>
-                Scrap findings is a collective archive of gestures and forms made through test prints, design experimentations, 
-                and process work. Connecting experience and materiality, this website is a reflection on the creative process and the beauty of imperfection.
+                Scrap findings is a collective of found scraps that houses an archive of gestures and forms made through
+            abandoned artwork. Connecting experience and materiality, this website is a reflection on finding
+                imperfections and beauty in the making process. Scrap Findings is a love story told by the observer who connects experiences. All Scraps are scavenged by Katie Wu around OCAD University.
             </p>
         </div>
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrap Findings</title>
-    <link rel="icon" type="image/png" href="scrap-images/favicon.png">
+    <link rel="icon" type="image/png" href="scrap-images/favicon-2.png">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Space+Grotesk:wght@400;600&display=swap"
@@ -16,6 +16,44 @@
 
     <!-- Connect CSS file -->
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .center-column {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scrap {
+            display: flex;
+            justify-content: center;
+        }
+
+        .magnify-wrapper {
+            position: relative;
+            display: inline-block;
+            cursor: crosshair;
+        }
+
+        .magnify-wrapper img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .magnifier {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            pointer-events: none;
+            display: none;
+            background-repeat: no-repeat;
+            z-index: 100;
+        }
+    </style>
 
 </head>
 
@@ -45,20 +83,24 @@
              
 
 
-                <h3>Description</h3>
+              
+                <h3>Materials</h3>
    <p>Textured plaster</p>
-
-                <p>This piece of scrap was found in the Garbage bin in the Screen Printing room 390.
+  <h3>Description</h3>
+                <p>The texture suggests it was applied with a towel or similar tool, and the irregular shape indicates it was broken off from a larger surface.</p>    
             </div>
 
-            <a href="archive-12.html" class="back-button">←Back</a>
+            <a href="archive-12.html" class="back-button">← Previous</a>
 
         </div>
 
         <!-- CENTER IMAGE -->
         <div class="center-column">
             <div class="scrap">
-                <img class="scrap-img-1" src="scrap-images/scrap-12.JPG" alt="Scrap Image">
+                <div class="magnify-wrapper">
+                    <img class="scrap-img-1" src="scrap-images/scrap-12.JPG" alt="Scrap Image">
+                    <div class="magnifier" id="magnifier"></div>
+                </div>
 
             </div>
         </div>
@@ -85,6 +127,42 @@
             document.getElementById("related").classList.toggle("active");
         }
 
+        const magnifier = document.getElementById('magnifier');
+        const magnifyWrapper = document.querySelector('.magnify-wrapper');
+        const images = document.querySelectorAll('.magnify-wrapper img');
+        const zoom = 2.5;
+        const mSize = 220;
+
+        if (magnifier && magnifyWrapper && images.length) {
+            images.forEach(img => {
+                img.addEventListener('mousemove', function (e) {
+                    const wrapperRect = magnifyWrapper.getBoundingClientRect();
+                    const imgRect = img.getBoundingClientRect();
+                    const imgX = e.clientX - imgRect.left;
+                    const imgY = e.clientY - imgRect.top;
+
+                    const cursorX = e.clientX - wrapperRect.left;
+                    const cursorY = e.clientY - wrapperRect.top;
+
+                    magnifier.style.display = 'block';
+                    magnifier.style.left = cursorX + 'px';
+                    magnifier.style.top = cursorY + 'px';
+                    magnifier.style.transform = 'translate(-50%, -50%)';
+
+                    magnifier.style.backgroundImage = `url('${img.src}')`;
+                    magnifier.style.backgroundSize = `${img.width * zoom}px ${img.height * zoom}px`;
+
+                    const bgX = imgX * zoom - mSize / 2;
+                    const bgY = imgY * zoom - mSize / 2;
+                    magnifier.style.backgroundPosition = `-${bgX}px -${bgY}px`;
+                });
+
+                img.addEventListener('mouseleave', function () {
+                    magnifier.style.display = 'none';
+                });
+            });
+        }
+
         // Audio play on + button click
         document.addEventListener('DOMContentLoaded', function () {
             const audioBtn = document.getElementById('audioBtn');
@@ -103,14 +181,21 @@
         });
 
         // Keyboard navigation for back/next buttons
-        document.addEventListener('keydown', function (e) {
+        window.addEventListener('keydown', function (e) {
+            const tag = (e.target && e.target.tagName ? e.target.tagName.toLowerCase() : '');
+            if (tag === 'input' || tag === 'textarea' || tag === 'select' || (e.target && e.target.isContentEditable)) {
+                return;
+            }
+
             const backBtn = document.querySelector('.back-button');
             const nextBtn = document.querySelector('.next-button');
+            const isLeft = e.key === 'ArrowLeft' || e.code === 'ArrowLeft';
+            const isRight = e.key === 'ArrowRight' || e.code === 'ArrowRight';
 
-            if (e.key === 'ArrowLeft' && backBtn) {
+            if (isLeft && backBtn) {
                 e.preventDefault();
                 backBtn.click();
-            } else if (e.key === 'ArrowRight' && nextBtn) {
+            } else if (isRight && nextBtn) {
                 e.preventDefault();
                 nextBtn.click();
             }

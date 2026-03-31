@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrap Findings</title>
-    <link rel="icon" type="image/png" href="scrap-images/favicon.png">
+    <link rel="icon" type="image/png" href="scrap-images/favicon-2.png">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Space+Grotesk:wght@400;600&display=swap"
@@ -52,7 +52,7 @@
                     graphite rubbing on tracing paper. Actual materials that the rubbings are from are unknown.
             </div>
 
-            <a href="main-page.html" class="back-button">← Back</a>
+            <a href="main-page.html" class="back-button">← Previous</a>
 
         </div>
 
@@ -115,16 +115,33 @@
         });
 
         // Keyboard navigation for back/next buttons
-        document.addEventListener('keydown', function (e) {
-            
+        window.addEventListener('keydown', function (e) {
+            if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) {
+                return;
+            }
+
+            const tag = (e.target && e.target.tagName ? e.target.tagName.toLowerCase() : '');
+            if (tag === 'input' || tag === 'textarea' || tag === 'select' || (e.target && e.target.isContentEditable)) {
+                return;
+            }
+
+            const key = e.key || e.code;
+            const isLeft = key === 'ArrowLeft' || key === 'Left' || e.keyCode === 37;
+            const isRight = key === 'ArrowRight' || key === 'Right' || e.keyCode === 39;
+
+            if (!isLeft && !isRight) {
+                return;
+            }
+
+            const backBtn = document.querySelector('.back-button');
             const nextBtn = document.querySelector('.next-button');
 
-            if (e.key === 'ArrowLeft' && backBtn) {
+            if (isLeft && backBtn && backBtn.href) {
                 e.preventDefault();
-                backBtn.click();
-            } else if (e.key === 'ArrowRight' && nextBtn) {
+                window.location.href = backBtn.href;
+            } else if (isRight && nextBtn && nextBtn.href) {
                 e.preventDefault();
-                nextBtn.click();
+                window.location.href = nextBtn.href;
             }
         });
     </script>

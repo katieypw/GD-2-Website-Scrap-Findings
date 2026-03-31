@@ -5,20 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrap Findings</title>
+    <link rel="icon" type="image/png" href="scrap-images/favicon-2.png">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Space+Grotesk:wght@400;600&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.adobe.com/fonts/ubuntu-mono" rel="stylesheet">
 
 
     <!-- Connect CSS file -->
     <link rel="stylesheet" href="style.css">
 
+    <style>
+        .center-column {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scrap {
+            display: flex;
+            justify-content: center;
+        }
+
+        .magnify-wrapper {
+            position: relative;
+            display: inline-block;
+            cursor: crosshair;
+        }
+
+        .magnify-wrapper img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .magnifier {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            pointer-events: none;
+            display: none;
+            background-repeat: no-repeat;
+            z-index: 100;
+        }
+    </style>
+
 </head>
 
-<body>
+<body id="archive">
 
     <div class="page">
 
@@ -28,64 +67,158 @@
             <a href="index.html" class="menu-button">Scrap Findings</a>
 
             <div class="sidebar-section">
+
+                <h4>/015</h4>
+
                 <h3>Date Found</h3>
-                <p>Sample Date, March 16, 2026</p>
-            </div>
 
-            <div class="sidebar-section">
+                <p>Around 5pm, March 1, 2026</p>
+
+
+
+
+
                 <h3>Location</h3>
-                <p>Sample Location</p>
-            </div>
+                <p>Ocad University 3rd Floor Depo</p>
 
-            <div class="sidebar-section">
+
+
+
+
+                <h3>Materials</h3>
+                <p>Unidentified</p>
                 <h3>Description</h3>
-                <p>This is a sample archive page for scrap findings.</p>
+                <p>
+
+
+
+                    Hard to identify. Looks like a prototype for a project. Looks like it has a black polycarbonate
+                    finish, could be designed to be clipped into modular wall plates.
+                </p>
             </div>
 
-            <a href="main-page.html" class="back-button">← Back</a>
-            <a href="archive-16.html" class="next-button"> Next</a>
+            <a href="archive-14.html" class="back-button">← Previous</a>
 
         </div>
 
         <!-- CENTER IMAGE -->
         <div class="center-column">
             <div class="scrap">
-                <img src="scrap-images/scrap-4-2.JPG" alt="Scrap Image">
+                <div class="magnify-wrapper">
+                    <!-- <img src="scrap-images/scrap-33.JPG" alt="Scrap Image">
+                    <div class="magnifier" id="magnifier"></div> -->
+                </div>
             </div>
         </div>
 
         <!-- RIGHT SIDE -->
         <div class="right-column">
-            <div class="hidden-content">
+            <!-- <div class="hover-box"> -->
+            <button class="info-toggle" id="audioBtn">+</button>
+
+            <audio id="archiveAudio">
+                <source src="audio/rubbing recording.m4a" type="audio/mp4">
+            </audio>
+            <p class="sound-label">sound</p>
+            <div class="related-panel">
+                <ul>
+                    <li>
+                        <a href="archive-2.html">002</a>
+                    </li>
+                    <li>
+                        <a href="archive-3.html">003</a>
+                    </li>
+                    <li>
+                        <a href="archive-4.html">004</a>
+                    </li>
+                </ul>
             </div>
+        </div>
 
-            <div class="hover-box">
-                <button class="info-toggle">+</button>
+        <a href="archive-16.html" class="next-button">Next →</a>
+    </div>
 
-                <div class="related-panel">
-                    <ul>
-                        <li>
-                            <a href="archive-16.html">002</a>
-                        </li>
-                        <li>
-                            <a href="#">003</a>
-                        </li>
-                        <li>
-                            <a href="#">004</a>
-                        </li>
+    </div>
 
-                    </ul>
-                    <a href="#">005</a>
-                    </ul>
-                </div>
-            </div>
+    <script>
+        function toggleInfo() {
+            document.getElementById("related").classList.toggle("active");
+        }
 
+        const magnifier = document.getElementById('magnifier');
+        const magnifyWrapper = document.querySelector('.magnify-wrapper');
+        const images = document.querySelectorAll('.magnify-wrapper img');
+        const zoom = 2.5;
+        const mSize = 160;
 
-            <script>
-                function toggleInfo() {
-                    document.getElementById("related").classList.toggle("active");
-                }
-            </script>
+        if (magnifier && magnifyWrapper && images.length) {
+            images.forEach(img => {
+                img.addEventListener('mousemove', function (e) {
+                    const wrapperRect = magnifyWrapper.getBoundingClientRect();
+                    const imgRect = img.getBoundingClientRect();
+                    const imgX = e.clientX - imgRect.left;
+                    const imgY = e.clientY - imgRect.top;
+
+                    const cursorX = e.clientX - wrapperRect.left;
+                    const cursorY = e.clientY - wrapperRect.top;
+
+                    magnifier.style.display = 'block';
+                    magnifier.style.left = cursorX + 'px';
+                    magnifier.style.top = cursorY + 'px';
+                    magnifier.style.transform = 'translate(-50%, -50%)';
+
+                    magnifier.style.backgroundImage = `url('${img.src}')`;
+                    magnifier.style.backgroundSize = `${img.width * zoom}px ${img.height * zoom}px`;
+
+                    const bgX = imgX * zoom - mSize / 2;
+                    const bgY = imgY * zoom - mSize / 2;
+                    magnifier.style.backgroundPosition = `-${bgX}px -${bgY}px`;
+                });
+
+                img.addEventListener('mouseleave', function () {
+                    magnifier.style.display = 'none';
+                });
+            });
+        }
+
+        // Audio play on + button click
+        document.addEventListener('DOMContentLoaded', function () {
+            const audioBtn = document.getElementById('audioBtn');
+            const archiveAudio = document.getElementById('archiveAudio');
+
+            if (audioBtn && archiveAudio) {
+                audioBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (archiveAudio.paused) {
+                        archiveAudio.play();
+                    } else {
+                        archiveAudio.pause();
+                    }
+                });
+            }
+        });
+
+        // Keyboard navigation for back/next buttons
+        window.addEventListener('keydown', function (e) {
+            const tag = (e.target && e.target.tagName ? e.target.tagName.toLowerCase() : '');
+            if (tag === 'input' || tag === 'textarea' || tag === 'select' || (e.target && e.target.isContentEditable)) {
+                return;
+            }
+
+            const backBtn = document.querySelector('.back-button');
+            const nextBtn = document.querySelector('.next-button');
+            const isLeft = e.key === 'ArrowLeft' || e.code === 'ArrowLeft';
+            const isRight = e.key === 'ArrowRight' || e.code === 'ArrowRight';
+
+            if (isLeft && backBtn) {
+                e.preventDefault();
+                backBtn.click();
+            } else if (isRight && nextBtn) {
+                e.preventDefault();
+                nextBtn.click();
+            }
+        });
+    </script>
 
 </body>
 
