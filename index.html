@@ -40,12 +40,30 @@
                 { legend: '.legend-item[data-shape="triangle"]', shapeType: '.triangle' }
             ];
 
+            let activeLegendType = null;
+
+            function applyLegendState(activeType) {
+                legendAndShapeMap.forEach(({ legend, shapeType }) => {
+                    const legendElement = document.querySelector(legend);
+                    const shapeElements = document.querySelectorAll(shapeType);
+                    const shouldActivate = activeType && shapeType === activeType;
+
+                    if (!legendElement || !shapeElements.length) return;
+
+                    legendElement.classList.toggle('legend-hover-active', !!shouldActivate);
+                    shapeElements.forEach(shape => {
+                        shape.classList.toggle('legend-hover-grow', !!shouldActivate);
+                    });
+                });
+            }
+
             legendAndShapeMap.forEach(({ legend, shapeType }) => {
                 const legendElement = document.querySelector(legend);
                 const shapeElements = document.querySelectorAll(shapeType);
 
                 if (legendElement && shapeElements.length > 0) {
                     legendElement.addEventListener('mouseenter', function () {
+                        if (activeLegendType) return;
                         legendElement.classList.add('legend-hover-active');
                         shapeElements.forEach(shape => {
                             shape.classList.add('legend-hover-grow');
@@ -53,12 +71,30 @@
                     });
 
                     legendElement.addEventListener('mouseleave', function () {
+                        if (activeLegendType) return;
                         legendElement.classList.remove('legend-hover-active');
                         shapeElements.forEach(shape => {
                             shape.classList.remove('legend-hover-grow');
                         });
                     });
+
+                    legendElement.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        activeLegendType = activeLegendType === shapeType ? null : shapeType;
+                        applyLegendState(activeLegendType);
+                    });
                 }
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!activeLegendType) return;
+
+                if (e.target.closest('.legend-item')) {
+                    return;
+                }
+
+                activeLegendType = null;
+                applyLegendState(null);
             });
 
             // diamond.addEventListener('click', function () {
