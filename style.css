@@ -59,7 +59,7 @@ body#archive {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .legend-item {
@@ -67,7 +67,7 @@ body#archive {
     transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     border: 4px dotted #ee2f73;
     border-radius: 24px;
-    padding: 6px 12px;
+    padding: 5px 10px;
     background: transparent;
     width: 100%;
     box-sizing: border-box;
@@ -779,7 +779,7 @@ body {
 .about-hover-box {
     position: absolute;
     top: 50px;
-    left: 620px;
+    left: 700px;
     width: 350px;
     background: #ffffff;
     border: 1px solid #e2e2e2;
@@ -908,15 +908,17 @@ body#main-page .triangle {
     bottom: 18px;
     right: 22px;
     font-family: ubuntu mono, monospace;
-    font-size: 14px;
+    font-size: 6px;
     color: #666;
     background: rgba(255, 255, 255, 0.78);
     border: 4px dotted #ee2f73;
     border-radius: 20px;
-    padding: 4px 10px;
+    padding: 2px 6px;
     z-index: 200;
     pointer-events: none;
-    line-height: 1.35;
+    line-height: 1.1;
+    transform: scale(0.62);
+    transform-origin: bottom right;
 }
 
 .zoom-hint-mobile {
@@ -928,6 +930,12 @@ body#main-page .triangle {
 }
 
 @media (max-width: 900px) {
+    /* Shared spacing system for legend + instruction stack */
+    :root {
+        --stack-side-inset: 8px;
+        --stack-bottom-inset: 8px;
+    }
+
     .about-hover-box {
         left: 590px;
     }
@@ -939,10 +947,10 @@ body#main-page .triangle {
     }
 
     .sidebar-legend {
-        left: 8px;
-        right: 8px;
+        left: var(--stack-side-inset);
+        right: var(--stack-side-inset);
         width: auto;
-        bottom: 8px;
+        bottom: var(--stack-bottom-inset);
         padding: 0;
     }
 
@@ -953,13 +961,13 @@ body#main-page .triangle {
     }
 
     .legend-content p {
-        font-size: clamp(15px, 4.2vw, 19px);
+        font-size: clamp(14px, 3.9vw, 17px);
         margin: 0;
-        gap: 12px;
+        gap: 10px;
     }
 
     .legend-item {
-        padding: 9px 12px;
+        padding: 8px 10px;
         border-width: 3px;
         border-radius: 20px;
     }
@@ -973,11 +981,11 @@ body#main-page .triangle {
     }
 
     .zoom-hint {
-        left: 8px;
-        right: 8px;
-        bottom: 162px;
-        font-size: clamp(15px, 4.2vw, 19px);
-        padding: 4px 10px;
+        left: var(--stack-side-inset);
+        right: var(--stack-side-inset);
+        bottom: 170px;
+        font-size: clamp(11px, 3vw, 14px);
+        padding: 5px 9px;
         text-align: center;
         line-height: 1.35;
         border: 3px dotted #ee2f73;
@@ -990,6 +998,32 @@ body#main-page .triangle {
 
     .zoom-hint-mobile {
         display: inline;
+    }
+}
+
+/* Narrow desktop web: stack instructions above the legend */
+@media (max-width: 900px) and (hover: hover) and (pointer: fine) {
+    .zoom-hint {
+        left: 8px;
+        right: 8px;
+        bottom: 170px;
+        font-size: 6px;
+        padding: 3px 7px;
+        text-align: center;
+        line-height: 1.1;
+        border: 4px dotted #ee2f73;
+        border-radius: 20px;
+        z-index: 200;
+        transform: scale(0.62);
+        transform-origin: bottom center;
+    }
+
+    .zoom-hint-desktop {
+        display: inline;
+    }
+
+    .zoom-hint-mobile {
+        display: none;
     }
 }
 
