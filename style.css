@@ -911,9 +911,9 @@ body#main-page .triangle {
     font-size: 6px;
     color: #666;
     background: rgba(255, 255, 255, 0.78);
-    border: 4px dotted #ee2f73;
+    border: 7px dotted #ee2f73;
     border-radius: 20px;
-    padding: 2px 6px;
+    padding: 8px 16px;
     z-index: 200;
     pointer-events: none;
     line-height: 1.1;
@@ -1008,10 +1008,10 @@ body#main-page .triangle {
         right: 8px;
         bottom: 170px;
         font-size: 6px;
-        padding: 3px 7px;
+        padding: 8px 16px;
         text-align: center;
         line-height: 1.1;
-        border: 4px dotted #ee2f73;
+        border: 7px dotted #ee2f73;
         border-radius: 20px;
         z-index: 200;
         transform: scale(0.62);
