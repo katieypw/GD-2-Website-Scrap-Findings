@@ -21,6 +21,15 @@
             const inner = document.getElementById('diamondInner');
             const aboutPopup = document.querySelector('.about-hover-box');
             let popupTimer;
+            let diamondFlipped = false;
+
+            function setDiamondFlipped(flipped) {
+                diamondFlipped = flipped;
+                diamond.classList.toggle('is-flipped', flipped);
+                if (aboutPopup) {
+                    aboutPopup.classList.toggle('is-visible', flipped);
+                }
+            }
 
             diamond.addEventListener('mouseenter', function () {
                 popupTimer = setTimeout(function () {
@@ -30,7 +39,15 @@
 
             diamond.addEventListener('mouseleave', function () {
                 clearTimeout(popupTimer);
-                aboutPopup.classList.remove('is-visible');
+                if (!diamondFlipped && aboutPopup) {
+                    aboutPopup.classList.remove('is-visible');
+                }
+            });
+
+            diamond.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                setDiamondFlipped(!diamondFlipped);
             });
 
             // Legend hover effect - grow buttons based on legend shape type
@@ -87,14 +104,14 @@
             });
 
             document.addEventListener('click', function (e) {
-                if (!activeLegendType) return;
-
-                if (e.target.closest('.legend-item')) {
-                    return;
+                if (activeLegendType && !e.target.closest('.legend-item')) {
+                    activeLegendType = null;
+                    applyLegendState(null);
                 }
 
-                activeLegendType = null;
-                applyLegendState(null);
+                if (diamondFlipped && !e.target.closest('#aboutDiamond')) {
+                    setDiamondFlipped(false);
+                }
             });
 
             // diamond.addEventListener('click', function () {

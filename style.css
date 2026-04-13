@@ -733,20 +733,41 @@ body {
     text-align: center;
 }
 
+.center-diamond-front,
+.center-diamond-back {
+    transition: opacity 0.22s ease;
+}
+
+.center-diamond-front {
+    opacity: 1;
+}
+
 .center-diamond-back {
     transform: rotateY(180deg);
+    opacity: 0;
 }
 
 .center-diamond-back span {
     color: #ee2f73;
 }
 
-.center-diamond:hover .center-diamond-inner {
+.center-diamond:hover .center-diamond-inner,
+.center-diamond.is-flipped .center-diamond-inner {
     transform: rotateY(180deg);
 }
 
 .center-diamond:hover .center-diamond-face {
     background-color: transparent;
+}
+
+.center-diamond:hover .center-diamond-front,
+.center-diamond.is-flipped .center-diamond-front {
+    opacity: 0;
+}
+
+.center-diamond:hover .center-diamond-back,
+.center-diamond.is-flipped .center-diamond-back {
+    opacity: 1;
 }
 
 .center-diamond:hover .center-diamond-back span {
