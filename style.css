@@ -898,6 +898,57 @@ body#main-page .triangle {
     line-height: 1.6;
 }
 
+@media (max-width: 900px) {
+    #zoom-canvas {
+        top: 8px;
+        bottom: 230px;
+    }
+
+    .sidebar-legend {
+        left: 8px;
+        right: 8px;
+        width: auto;
+        bottom: 8px;
+        padding: 0;
+    }
+
+    .legend-content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .legend-content p {
+        font-size: clamp(15px, 4.2vw, 19px);
+        margin: 0;
+        gap: 12px;
+    }
+
+    .legend-item {
+        padding: 9px 12px;
+        border-width: 3px;
+        border-radius: 20px;
+    }
+
+    .legend-shape,
+    .pentagon-small,
+    .square-small,
+    .triangle-small {
+        transform: scale(1.18);
+        transform-origin: center;
+    }
+
+    .zoom-hint {
+        left: 8px;
+        right: 8px;
+        bottom: 162px;
+        font-size: clamp(13px, 3.8vw, 16px);
+        padding: 8px 12px;
+        text-align: center;
+        line-height: 1.45;
+    }
+}
+
 /* Shape wrapper for floating animation */
 .shape-wrapper {
     position: absolute;
