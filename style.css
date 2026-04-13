@@ -898,10 +898,19 @@ body#main-page .triangle {
     line-height: 1.6;
 }
 
+.zoom-hint-mobile {
+    display: none;
+}
+
+.zoom-hint-desktop {
+    display: inline;
+}
+
 @media (max-width: 900px) {
     #zoom-canvas {
         top: 8px;
         bottom: 230px;
+        touch-action: none;
     }
 
     .sidebar-legend {
@@ -946,6 +955,14 @@ body#main-page .triangle {
         padding: 8px 12px;
         text-align: center;
         line-height: 1.45;
+    }
+
+    .zoom-hint-desktop {
+        display: none;
+    }
+
+    .zoom-hint-mobile {
+        display: inline;
     }
 }
 

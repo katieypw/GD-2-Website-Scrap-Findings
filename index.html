@@ -83,6 +83,7 @@
                 var MOBILE_SCALE_BOOST = 1.16;
                 var zoom = 1, panX = 0, panY = 45;
                 var MIN_ZOOM = 0.4, MAX_ZOOM = 5;
+                var DOUBLE_TAP_MS = 320;
 
                 function getBaseZoom() {
                     var vw = window.innerWidth;
@@ -119,20 +120,34 @@
                         'translate(' + panX + 'px, ' + panY + 'px) scale(' + zoom + ')';
                 }
 
+                function clampZoom(value) {
+                    return Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, value));
+                }
+
+                function getCanvasPoint(clientX, clientY) {
+                    var rect = canvas.getBoundingClientRect();
+                    return {
+                        x: clientX - rect.left - rect.width / 2,
+                        y: clientY - rect.top - rect.height / 2
+                    };
+                }
+
+                function applyZoomAtPoint(nextZoom, clientX, clientY) {
+                    var point = getCanvasPoint(clientX, clientY);
+                    var oldZoom = zoom;
+                    zoom = clampZoom(nextZoom);
+                    panX = point.x + (panX - point.x) * (zoom / oldZoom);
+                    panY = point.y + (panY - point.y) * (zoom / oldZoom);
+                    applyTransform();
+                }
+
                 resetView(false); // set initial position to match reset state
 
                 // Scroll wheel / trackpad pinch to zoom (cursor-centred)
                 canvas.addEventListener('wheel', function (e) {
                     e.preventDefault();
                     var factor = e.deltaY < 0 ? 1.12 : (1 / 1.12);
-                    var newZoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, zoom * factor));
-                    var rect = canvas.getBoundingClientRect();
-                    var mx = e.clientX - rect.left - rect.width / 2;
-                    var my = e.clientY - rect.top - rect.height / 2;
-                    panX = mx + (panX - mx) * (newZoom / zoom);
-                    panY = my + (panY - my) * (newZoom / zoom);
-                    zoom = newZoom;
-                    applyTransform();
+                    applyZoomAtPoint(zoom * factor, e.clientX, e.clientY);
                 }, { passive: false });
 
                 // Drag to pan
@@ -159,6 +174,93 @@
                     isPanning = false;
                     canvas.classList.remove('is-panning');
                 });
+
+                // Touch controls (mobile): pinch to zoom, one-finger drag to pan, double-tap to reset.
+                var touchPan = false;
+                var touchStartX = 0;
+                var touchStartY = 0;
+                var pinchActive = false;
+                var pinchDistanceStart = 0;
+                var pinchZoomStart = 1;
+                var lastTapTime = 0;
+
+                function touchDistance(t1, t2) {
+                    var dx = t2.clientX - t1.clientX;
+                    var dy = t2.clientY - t1.clientY;
+                    return Math.hypot(dx, dy);
+                }
+
+                function touchMidpoint(t1, t2) {
+                    return {
+                        x: (t1.clientX + t2.clientX) / 2,
+                        y: (t1.clientY + t2.clientY) / 2
+                    };
+                }
+
+                canvas.addEventListener('touchstart', function (e) {
+                    if (e.touches.length === 2) {
+                        pinchActive = true;
+                        touchPan = false;
+                        pinchDistanceStart = touchDistance(e.touches[0], e.touches[1]);
+                        pinchZoomStart = zoom;
+                        e.preventDefault();
+                        return;
+                    }
+
+                    if (e.touches.length === 1) {
+                        if (e.target.closest('a, button, #aboutDiamond')) {
+                            touchPan = false;
+                            return;
+                        }
+
+                        touchPan = true;
+                        touchStartX = e.touches[0].clientX - panX;
+                        touchStartY = e.touches[0].clientY - panY;
+                    }
+                }, { passive: false });
+
+                canvas.addEventListener('touchmove', function (e) {
+                    if (pinchActive && e.touches.length === 2) {
+                        var currentDistance = touchDistance(e.touches[0], e.touches[1]);
+                        if (pinchDistanceStart > 0) {
+                            var midpoint = touchMidpoint(e.touches[0], e.touches[1]);
+                            var scaleFactor = currentDistance / pinchDistanceStart;
+                            applyZoomAtPoint(pinchZoomStart * scaleFactor, midpoint.x, midpoint.y);
+                        }
+                        e.preventDefault();
+                        return;
+                    }
+
+                    if (touchPan && e.touches.length === 1) {
+                        panX = e.touches[0].clientX - touchStartX;
+                        panY = e.touches[0].clientY - touchStartY;
+                        applyTransform();
+                        e.preventDefault();
+                    }
+                }, { passive: false });
+
+                canvas.addEventListener('touchend', function (e) {
+                    if (pinchActive && e.touches.length < 2) {
+                        pinchActive = false;
+                        pinchDistanceStart = 0;
+                    }
+
+                    if (e.touches.length === 0) {
+                        touchPan = false;
+
+                        if (e.target.closest('a, button, #aboutDiamond')) {
+                            return;
+                        }
+
+                        var now = Date.now();
+                        if (now - lastTapTime <= DOUBLE_TAP_MS) {
+                            resetView(true);
+                            lastTapTime = 0;
+                        } else {
+                            lastTapTime = now;
+                        }
+                    }
+                }, { passive: true });
 
                 // Double-click to reset – restore to page-load state
                 canvas.addEventListener('dblclick', function (e) {
@@ -309,7 +411,10 @@
     </div>
     </div><!-- end zoom-canvas -->
 
-    <div class="zoom-hint">scroll to zoom &nbsp;·&nbsp; drag to pan &nbsp;·&nbsp; double-click to reset</div>
+    <div class="zoom-hint">
+        <span class="zoom-hint-desktop">scroll to zoom &nbsp;·&nbsp; drag to pan &nbsp;·&nbsp; double-click to reset</span>
+        <span class="zoom-hint-mobile">pinch to zoom &nbsp;·&nbsp; drag to pan &nbsp;·&nbsp; double-tap to reset</span>
+    </div>
 
     <script src="responsive.js"></script>
 </body>
