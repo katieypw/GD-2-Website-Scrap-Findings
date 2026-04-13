@@ -929,7 +929,7 @@ body#main-page .triangle {
 
 @media (max-width: 900px) {
     .about-hover-box {
-        left: 610px;
+        left: 600px;
     }
 
     #zoom-canvas {
