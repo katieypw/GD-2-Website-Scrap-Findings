@@ -178,22 +178,6 @@
             });
         }
 
-        // Audio play on + button click
-        document.addEventListener('DOMContentLoaded', function () {
-            const audioBtn = document.getElementById('audioBtn');
-            const archiveAudio = document.getElementById('archiveAudio');
-
-            if (audioBtn && archiveAudio) {
-                audioBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    if (archiveAudio.paused) {
-                        archiveAudio.play();
-                    } else {
-                        archiveAudio.pause();
-                    }
-                });
-            }
-        });
 
         // Keyboard navigation for back/next buttons
         window.addEventListener('keydown', function (e) {

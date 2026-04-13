@@ -120,14 +120,7 @@
         <div class="hidden-content">
 
         </div>
-        <div class="hover-box">
-            <button class="info-toggle" id="audioBtn">+</button>
 
-            <audio id="archiveAudio">
-                <source src="audio/branches rubbing.m4a" type="audio/mp4">
-            </audio>
-            <p class="sound-label">sound</p>
-        </div>
 
         <a href="archive-23.html" class="next-button">Next →</a>
     </div>
@@ -173,22 +166,6 @@
             });
         }
 
-        // Audio play on + button click
-        document.addEventListener('DOMContentLoaded', function () {
-            const audioBtn = document.getElementById('audioBtn');
-            const archiveAudio = document.getElementById('archiveAudio');
-
-            if (audioBtn && archiveAudio) {
-                audioBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    if (archiveAudio.paused) {
-                        archiveAudio.play();
-                    } else {
-                        archiveAudio.pause();
-                    }
-                });
-            }
-        });
 
         // Keyboard navigation for back/next buttons
         window.addEventListener('keydown', function (e) {

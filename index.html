@@ -67,6 +67,71 @@
             //         window.location.href = 'about.html';
             //     }, 1500); 
             // });
+
+            // ── Zoom & Pan ──────────────────────────────────────────────
+            (function () {
+                var canvas = document.getElementById('zoom-canvas');
+                var stage = canvas && canvas.querySelector('.nav-wrapper');
+                if (!canvas || !stage) return;
+
+                var zoom = 1, panX = 0, panY = 45;
+                var MIN_ZOOM = 0.4, MAX_ZOOM = 5;
+
+                function applyTransform() {
+                    stage.style.transform =
+                        'translate(' + panX + 'px, ' + panY + 'px) scale(' + zoom + ')';
+                }
+
+                applyTransform(); // set initial position to match reset state
+
+                // Scroll wheel / trackpad pinch to zoom (cursor-centred)
+                canvas.addEventListener('wheel', function (e) {
+                    e.preventDefault();
+                    var factor = e.deltaY < 0 ? 1.12 : (1 / 1.12);
+                    var newZoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, zoom * factor));
+                    var rect = canvas.getBoundingClientRect();
+                    var mx = e.clientX - rect.left - rect.width / 2;
+                    var my = e.clientY - rect.top - rect.height / 2;
+                    panX = mx + (panX - mx) * (newZoom / zoom);
+                    panY = my + (panY - my) * (newZoom / zoom);
+                    zoom = newZoom;
+                    applyTransform();
+                }, { passive: false });
+
+                // Drag to pan
+                var isPanning = false, startX, startY;
+
+                canvas.addEventListener('mousedown', function (e) {
+                    if (e.target.closest('a, button, #aboutDiamond')) return;
+                    isPanning = true;
+                    startX = e.clientX - panX;
+                    startY = e.clientY - panY;
+                    canvas.classList.add('is-panning');
+                    e.preventDefault();
+                });
+
+                window.addEventListener('mousemove', function (e) {
+                    if (!isPanning) return;
+                    panX = e.clientX - startX;
+                    panY = e.clientY - startY;
+                    applyTransform();
+                });
+
+                window.addEventListener('mouseup', function () {
+                    if (!isPanning) return;
+                    isPanning = false;
+                    canvas.classList.remove('is-panning');
+                });
+
+                // Double-click to reset – restore to page-load state
+                canvas.addEventListener('dblclick', function (e) {
+                    if (e.target.closest('a, button')) return;
+                    zoom = 1; panX = 0; panY = 45;
+                    stage.style.transition = 'transform 0.4s ease';
+                    applyTransform();
+                    setTimeout(function () { stage.style.transition = ''; }, 400);
+                });
+            })();
         });
 
     </script>
@@ -80,17 +145,17 @@
 <body id="main-page">
 
     <aside class="sidebar-legend">
-        <div class="legend-box"></div>
         <div class="legend-content">
 
             <p class="legend-item" data-shape="circle"><span class="legend-shape pentagon-small"></span> 3D Material Scraps</p>
             <p class="legend-item" data-shape="square"><span class="legend-shape square-small"></span> Paper Scraps</p>
             <p class="legend-item" data-shape="triangle"><span class="legend-shape triangle-small"></span> Fabric Scraps</p>
-            <p class="legend-hint">Hover on me to see!</p>
+           
 
         </div>
     </aside>
 
+    <div id="zoom-canvas">
     <div class="nav-wrapper">
         <div class="center-diamond" id="aboutDiamond" aria-label="Scrap Findings card">
             <div class="center-diamond-inner" id="diamondInner">
@@ -204,6 +269,9 @@
         </div>
 
     </div>
+    </div><!-- end zoom-canvas -->
+
+    <div class="zoom-hint">scroll to zoom &nbsp;·&nbsp; drag to pan &nbsp;·&nbsp; double-click to reset</div>
 
     <script src="responsive.js"></script>
 </body>
