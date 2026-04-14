@@ -43,15 +43,18 @@
 
         .magnifier {
             position: absolute;
-            width: 160px;
-            height: 160px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             border: 2px solid rgba(0, 0, 0, 0.25);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             pointer-events: none;
             display: none;
+             overflow: hidden;
+            background-color: #fff;
             background-repeat: no-repeat;
             z-index: 100;
+              transform: translate(-50%, -50%);
         }
     </style>
 
@@ -105,8 +108,8 @@
         <div class="center-column">
             <div class="scrap">
                 <div class="magnify-wrapper">
-                    <!-- <img src="scrap-images/scrap-33.JPG" alt="Scrap Image">
-                    <div class="magnifier" id="magnifier"></div> -->
+                    <img class="scrap-img-5" src="scrap-images/scrap-36.png" alt="Scrap Image">
+                    <div class="magnifier" id="magnifier"></div>
                 </div>
             </div>
         </div>
@@ -149,7 +152,7 @@
         const magnifyWrapper = document.querySelector('.magnify-wrapper');
         const images = document.querySelectorAll('.magnify-wrapper img');
         const zoom = 2.5;
-        const mSize = 160;
+        const mSize = 220;
 
         if (magnifier && magnifyWrapper && images.length) {
             images.forEach(img => {
