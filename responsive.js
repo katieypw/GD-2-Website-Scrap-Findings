@@ -5,15 +5,20 @@
 (function () {
     var BASE_WIDTH = 1300;
     var MAIN_PAGE_BREAKPOINT = 430;
+    var MOBILE_ARCHIVE_BREAKPOINT = 900;
 
     function applyScale() {
         var vw = window.innerWidth;
         var isMainPage = document.body && document.body.id === 'main-page';
+        var isArchivePage = document.body && document.body.id === 'archive';
         var scale;
 
         if (isMainPage && vw <= 768) {
             // Keep mobile index at full size until a narrow threshold is reached.
             scale = vw >= MAIN_PAGE_BREAKPOINT ? 1 : Math.max(0.92, vw / MAIN_PAGE_BREAKPOINT);
+        } else if (isArchivePage && vw <= MOBILE_ARCHIVE_BREAKPOINT) {
+            // Let archive pages use the stacked mobile layout at full size.
+            scale = 1;
         } else {
             scale = vw / BASE_WIDTH;
         }
