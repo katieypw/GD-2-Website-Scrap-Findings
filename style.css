@@ -267,11 +267,11 @@ body {
 
 .menu-button {
     background: #ee2f73;
-    padding: 20px 20px;
+     padding: 18px 50px;
     text-decoration: none;
     color: #eaeaea;
     font-size: 20px;
-    border-radius: 20px;
+    border-radius: 40px;
     transition: 0.2s ease;
     text-align: center;
     font-family: ubuntu mono, monospace;
@@ -303,16 +303,16 @@ body#archive .menu-button {
 }
 
 .sidebar-section h3 {
-    margin: 0 0 6px 0;
+    margin: 0 0 2px 0;
     font-size: 14px;
     text-transform: uppercase;
     color: #333;
 }
 
 .sidebar-section p {
-    margin: 10;
+    margin: 0 0 18px 0;
     font-size: 13px;
-    line-height: 2;
+    line-height: 1.45;
     color: #555;
 }
 
@@ -1193,8 +1193,8 @@ body#main-page .triangle {
 }
 
 .spiral-22 {
-    top: 620px;
-    left: 680px;
+    top: 605px;
+    left: 660px;
 }
 
 .spiral-23 {

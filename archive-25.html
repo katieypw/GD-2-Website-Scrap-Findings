@@ -56,6 +56,14 @@
             z-index: 100;
             transform: translate(-50%, -50%);
         }
+
+        body#archive .magnify-wrapper img:first-of-type:nth-last-of-type(n + 2) {
+            margin-top: 100px !important;
+        }
+
+        .magnify-wrapper img + img {
+            margin-top: 250px;
+        }
     </style>
 
 </head>
@@ -108,8 +116,8 @@
         <div class="center-column">
             <div class="scrap">
                 <div class="magnify-wrapper">
-                    <img class="scrap-img-5" src="scrap-images/scrap-37.png" alt="Scrap Image">
-                     <img class="scrap-img-5" src="scrap-images/scrap-38.png" alt="Scrap Image">
+                    <img class="scrap-img-4" src="scrap-images/scrap-37.png" alt="Scrap Image">
+                     <img class="scrap-img-4" src="scrap-images/scrap-38.png" alt="Scrap Image">
                     <div class="magnifier" id="magnifier"></div>
                 </div>
             </div>

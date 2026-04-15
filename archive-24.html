@@ -42,7 +42,7 @@
         }
 
         .magnifier {
-            position: absolute;
+           position: absolute;
             width: 220px;
             height: 220px;
             border-radius: 50%;
@@ -50,9 +50,17 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             pointer-events: none;
             display: none;
+            overflow: hidden;
+            background-color: #fff;
             background-repeat: no-repeat;
             z-index: 100;
+            transform: translate(-50%, -50%);
         }
+
+        .scrap-img-1 {
+            margin-left: -85px !important;
+        }
+      
     </style>
 
 </head>
@@ -102,7 +110,7 @@
         <div class="center-column">
             <div class="scrap">
                 <div class="magnify-wrapper">
-                    <img src="scrap-images/scrap-13.JPG" alt="Scrap Image">
+                    <img class="scrap-img-1" src="scrap-images/scrap-13.JPG" alt="Scrap Image">
                     <div class="magnifier" id="magnifier"></div>
                 </div>
             </div>
