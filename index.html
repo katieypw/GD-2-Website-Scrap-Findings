@@ -110,9 +110,11 @@
                 var MOBILE_BREAKPOINT = 900;
                 var NAV_WIDTH = 1000;
                 var NAV_HEIGHT = 800;
-                var MOBILE_EDGE_GUTTER_X = 26;
-                var MOBILE_EDGE_GUTTER_Y = 18;
-                var MOBILE_SCALE_BOOST = 0.96;
+                var MOBILE_LAYOUT_WIDTH = 860;
+                var MOBILE_LAYOUT_HEIGHT = 700;
+                var MOBILE_EDGE_GUTTER_X = 14;
+                var MOBILE_EDGE_GUTTER_Y = 12;
+                var MOBILE_SCALE_BOOST = 1.02;
                 var zoom = 1, panX = 0, panY = 45;
                 var MIN_ZOOM = 0.4, MAX_ZOOM = 5;
                 var DOUBLE_TAP_MS = 320;
@@ -124,7 +126,7 @@
                         var rect = canvas.getBoundingClientRect();
                         var availableW = Math.max(240, rect.width - (MOBILE_EDGE_GUTTER_X * 2));
                         var availableH = Math.max(240, rect.height - (MOBILE_EDGE_GUTTER_Y * 2));
-                        var fitScale = Math.min(availableW / NAV_WIDTH, availableH / NAV_HEIGHT);
+                        var fitScale = Math.min(availableW / MOBILE_LAYOUT_WIDTH, availableH / MOBILE_LAYOUT_HEIGHT);
                         return Math.max(MIN_ZOOM, Math.min(1, fitScale * MOBILE_SCALE_BOOST));
                     }
 
@@ -444,8 +446,16 @@
     </div><!-- end zoom-canvas -->
 
     <div class="zoom-hint">
-        <span class="zoom-hint-desktop">scroll to zoom &nbsp;·&nbsp; drag to pan &nbsp;·&nbsp; double-click to reset</span>
-        <span class="zoom-hint-mobile">pinch to zoom &nbsp;·&nbsp; drag to pan &nbsp;·&nbsp; double-tap to reset</span>
+        <span class="zoom-hint-desktop">
+            <span class="zoom-hint-line">scroll to zoom</span>
+            <span class="zoom-hint-line">drag to pan</span>
+            <span class="zoom-hint-line">double-click to reset</span>
+        </span>
+        <span class="zoom-hint-mobile">
+            <span class="zoom-hint-line">• pinch to zoom</span>
+            <span class="zoom-hint-line">• drag to pan</span>
+            <span class="zoom-hint-line">• double-tap to reset</span>
+        </span>
     </div>
 
     <script src="responsive.js"></script>

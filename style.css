@@ -1006,6 +1006,7 @@ body#main-page .triangle {
     z-index: 200;
     pointer-events: none;
     line-height: 1.1;
+    text-align: left;
     transform: scale(0.62);
     transform-origin: bottom right;
 }
@@ -1015,7 +1016,15 @@ body#main-page .triangle {
 }
 
 .zoom-hint-desktop {
-    display: inline;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.zoom-hint-line {
+    display: block;
+    white-space: nowrap;
 }
 
 @media (max-width: 900px) {
@@ -1043,6 +1052,31 @@ body#main-page .triangle {
         top: 8px;
         bottom: 230px;
         touch-action: none;
+    }
+
+    body#main-page .shape {
+        width: 44px;
+        height: 44px;
+        font-size: 14px;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body#main-page .shape::before {
+        content: "";
+        position: absolute;
+        inset: -8px;
+    }
+
+    body#main-page .shape.legend-hover-grow {
+        transform: rotate(var(--base-rot)) scale(1.12);
+    }
+
+    body#main-page .about-hover-box.is-visible~.shape-wrapper.spiral-1 .shape,
+    body#main-page .shape-wrapper.spiral-1:hover .shape,
+    body#main-page .shape-wrapper.spiral-1 .shape:focus-visible,
+    body#main-page .shape-wrapper.spiral-1 .shape:active {
+        transform: rotate(var(--base-rot)) scale(1.22);
     }
 
     .sidebar-legend {
@@ -1083,46 +1117,73 @@ body#main-page .triangle {
         left: var(--stack-side-inset);
         right: var(--stack-side-inset);
         bottom: 170px;
-        font-size: clamp(11px, 3vw, 14px);
-        padding: 5px 9px;
-        text-align: center;
-        line-height: 1.35;
+        width: auto;
+        max-width: none;
+        padding: 8px 12px;
+        text-align: left;
+        line-height: 1.25;
+        font-size: clamp(9px, 2.4vw, 11px);
         border: 3px dotted #ee2f73;
-        border-radius: 20px;
+        border-radius: 18px;
+        transform: none;
+        transform-origin: bottom center;
+        box-sizing: border-box;
     }
 
     .zoom-hint-desktop {
         display: none;
+        white-space: nowrap;
     }
 
     .zoom-hint-mobile {
-        display: inline;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .zoom-hint-line {
+        display: block;
+        white-space: nowrap;
+        text-align: left;
     }
 }
 
 /* Narrow desktop web: stack instructions above the legend */
 @media (max-width: 900px) and (hover: hover) and (pointer: fine) {
     .zoom-hint {
-        left: 8px;
-        right: 8px;
+        left: var(--stack-side-inset);
+        right: var(--stack-side-inset);
         bottom: 170px;
-        font-size: 6px;
-        padding: 8px 16px;
-        text-align: center;
+        width: auto;
+        max-width: none;
+        font-size: 5px;
+        padding: 8px 12px;
+        text-align: left;
         line-height: 1.1;
-        border: 7px dotted #ee2f73;
-        border-radius: 20px;
+        border: 3px dotted #ee2f73;
+        border-radius: 18px;
         z-index: 200;
         transform: scale(0.62);
         transform-origin: bottom center;
+        box-sizing: border-box;
     }
 
     .zoom-hint-desktop {
-        display: inline;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
     }
 
     .zoom-hint-mobile {
         display: none;
+    }
+
+    .zoom-hint-line {
+        display: block;
+        white-space: nowrap;
+        text-align: left;
     }
 }
 
