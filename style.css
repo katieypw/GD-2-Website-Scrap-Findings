@@ -956,6 +956,7 @@ body {
 /* Main page shape colors */
 body#main-page .circle {
     background: #ffd527;
+    size: 100px;
 }
 
 body#main-page .square {
@@ -1042,6 +1043,9 @@ body#main-page .triangle {
 
     body#main-page {
         overflow: hidden;
+        min-height: 100dvh;
+        background-attachment: scroll;
+        background-position: center top;
     }
 
     .about-hover-box {
@@ -1049,15 +1053,15 @@ body#main-page .triangle {
     }
 
     #zoom-canvas {
-        top: 8px;
-        bottom: 230px;
+        top: 0;
+        bottom: 0;
         touch-action: none;
     }
 
     body#main-page .shape {
-        width: 44px;
-        height: 44px;
-        font-size: 14px;
+        width: 58px;
+        height: 58px;
+        font-size: 17px;
         touch-action: manipulation;
         -webkit-tap-highlight-color: transparent;
     }
@@ -1072,12 +1076,49 @@ body#main-page .triangle {
         transform: rotate(var(--base-rot)) scale(1.12);
     }
 
+    body#main-page .center-diamond {
+        margin: 180px auto 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     body#main-page .about-hover-box.is-visible~.shape-wrapper.spiral-1 .shape,
     body#main-page .shape-wrapper.spiral-1:hover .shape,
     body#main-page .shape-wrapper.spiral-1 .shape:focus-visible,
     body#main-page .shape-wrapper.spiral-1 .shape:active {
         transform: rotate(var(--base-rot)) scale(1.22);
     }
+
+    body#main-page .spiral-1 { top: -150px; left: 84px; }
+    body#main-page .spiral-2 { top: -100px; left: 230px; }
+    body#main-page .spiral-3 { top: -56px; left: 400px; }
+    body#main-page .spiral-4 { top: 50px; left: 446px; }
+    body#main-page .spiral-5 { top: 150px; left: 650px; }
+    body#main-page .spiral-6 { top: -78px; left: 706px; }
+    body#main-page .spiral-7 { top: -34px; left: 814px; }
+    body#main-page .spiral-8 { top: 58px; left: 862px; }
+    body#main-page .spiral-9 { top: 550px; left: 870px; }
+    body#main-page .spiral-10 { top: 250px; left: 900px; }
+    body#main-page .spiral-11 { top: 700px; left: 814px; }
+    body#main-page .spiral-12 { top: 550px; left: 726px; }
+    body#main-page .spiral-13 { top: 650px; left: 608px; }
+    body#main-page .spiral-14 { top: 598px; left: 474px; }
+    body#main-page .spiral-15 { top: 598px; left: 342px; }
+    body#main-page .spiral-16 { top: 700px; left: 214px; }
+    body#main-page .spiral-17 { top: 600px; left: 108px; }
+    body#main-page .spiral-18 { top: 450px; left: 54px; }
+    body#main-page .spiral-19 { top: 300px; left: 100px; }
+    body#main-page .spiral-20 { top: 150px; left: 68px; }
+    body#main-page .spiral-21 { top: 26px; left: 178px; }
+    body#main-page .spiral-22 { top: 150px; left: 300px; }
+    body#main-page .spiral-23 { top: 16px; left: 630px; }
+    body#main-page .spiral-24 { top: 220px; left: 782px; }
+    body#main-page .spiral-25 { top: 250px; left: 248px; }
+    body#main-page .spiral-26 { top: 350px; left: 692px; }
+    body#main-page .spiral-27 { top: 400px; left: 776px; }
+    body#main-page .spiral-28 { top: 450px; left: 596px; }
+    body#main-page .spiral-29 { top: 480px; left: 376px; }
+    body#main-page .spiral-30 { top: 420px; left: 236px; }
 
     .sidebar-legend {
         left: var(--stack-side-inset);
@@ -1116,17 +1157,18 @@ body#main-page .triangle {
     .zoom-hint {
         left: var(--stack-side-inset);
         right: var(--stack-side-inset);
-        bottom: 170px;
+        top: var(--stack-side-inset);
+        bottom: auto;
         width: auto;
         max-width: none;
-        padding: 8px 12px;
+        padding: 6px 10px;
         text-align: left;
-        line-height: 1.25;
-        font-size: clamp(9px, 2.4vw, 11px);
+        line-height: 1.2;
+        font-size: clamp(11px, 3vw, 13px);
         border: 3px dotted #ee2f73;
         border-radius: 18px;
         transform: none;
-        transform-origin: bottom center;
+        transform-origin: top center;
         box-sizing: border-box;
     }
 
