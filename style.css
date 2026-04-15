@@ -649,13 +649,15 @@ body#archive .magnify-wrapper img:first-of-type:nth-last-of-type(n + 2) {
     body#archive {
         display: block;
         zoom: 1 !important;
+        overflow-x: hidden;
     }
 
     body#archive .page {
         margin-left: 0;
-        padding: 16px 16px 120px;
+        padding: 16px 12px 120px;
         gap: 18px;
         align-items: stretch;
+        box-sizing: border-box;
     }
 
     body#archive .left-column,
@@ -664,6 +666,7 @@ body#archive .magnify-wrapper img:first-of-type:nth-last-of-type(n + 2) {
         position: static;
         width: 100%;
         height: auto;
+        box-sizing: border-box;
     }
 
     body#archive .left-column {
@@ -685,31 +688,45 @@ body#archive .magnify-wrapper img:first-of-type:nth-last-of-type(n + 2) {
     body#archive .center-column {
         justify-content: flex-start;
         align-items: center !important;
+        overflow: hidden;
     }
 
     body#archive .scrap {
-        max-width: 100%;
-        padding: 0;
+        width: 100%;
+        max-width: 440px;
+        padding: 12px;
         margin: 0 auto 24px;
+        box-sizing: border-box;
     }
 
     body#archive .magnify-wrapper {
         width: 100%;
-        max-width: 560px;
+        max-width: 416px;
+        padding: 8px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     body#archive .magnify-wrapper img,
     body#archive [class^="scrap-img-"],
     body#archive [class*=" scrap-img-"] {
+        display: block;
         width: 100% !important;
         max-width: 100% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
+        height: auto !important;
+        padding: 0 !important;
+        margin: 0 auto 20px !important;
+        box-sizing: border-box;
     }
 
     body#archive .magnify-wrapper img:first-of-type,
     body#archive .magnify-wrapper img:first-of-type:nth-last-of-type(n + 2) {
         margin-top: 0 !important;
+    }
+
+    body#archive .magnify-wrapper img + img {
+        margin-top: 12px !important;
     }
 
     body#archive .right-column {
@@ -1006,6 +1023,16 @@ body#main-page .triangle {
     :root {
         --stack-side-inset: 8px;
         --stack-bottom-inset: 8px;
+    }
+
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body#main-page {
+        overflow: hidden;
     }
 
     .about-hover-box {
