@@ -1002,8 +1002,8 @@ body#main-page .triangle {
     color: #666;
     background: rgba(255, 255, 255, 0.78);
     border: 7px dotted #ee2f73;
-    border-radius: 20px;
-    padding: 8px 16px;
+    border-radius: 60px;
+    padding: 16px 20px;
     z-index: 200;
     pointer-events: none;
     line-height: 1.1;
