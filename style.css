@@ -1077,9 +1077,24 @@ body#main-page .triangle {
     }
 
     body#main-page .center-diamond {
+        width: 300px;
+        height: 300px;
         margin: 180px auto 0;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    body#main-page .center-diamond-face {
+        inset: 24px;
+    }
+
+    body#main-page .center-diamond-face::before {
+        width: 205px;
+        height: 205px;
+    }
+
+    body#main-page .center-diamond-face span {
+        font-size: 32px;
     }
 
     body#main-page .about-hover-box.is-visible~.shape-wrapper.spiral-1 .shape,
